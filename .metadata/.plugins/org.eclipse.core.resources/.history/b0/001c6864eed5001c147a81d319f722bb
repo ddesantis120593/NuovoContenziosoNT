@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.CausaMapper">
+
+    <resultMap type="mybatis.Causa" id="CausaResult">
+        <id property="id" column="id" />
+        <result property="identificativoCausa" column="identificativoCausa" />
+        <result property="fascicolo" column="fascicolo" />
+        <result property="chiaveMeccanografica" column="chiaveMeccanografica" />   
+        <result property="attore" column="attore" />   
+        <result property="convenuto" column="convenuto" />
+        <result property="terzo" column="terzo" />
+        <result property="protocollo" column="protocollo" />   
+        <result property="dataProtocollo" column="dataProtocollo" /> 
+        <result property="referenteLegale" column="referenteLegale" />      
+    </resultMap>
+
+    <select id="getCausa" resultMap="CausaResult">
+	         select distinct 
+	       U1.DESC_UFF AS UFF_ACQ,      
+	       U2.COD_UFF AS COD_DIR_REG_ACQ,
+			   U1.COD_UFF AS COD_UFF_ACQ, 
+			   U2.DESC_UFF AS DIR_REG_ACQ,
+	(select  U3.COD_UFF from
+	 ufficio u3 
+	,ufficio u4 
+	where
+		(U3.COD_UFF = C.struttura_competente OR C.struttura_competente IS NULL) 
+		AND (u4.cod_uff = u3.cod_uff and u3.cod_uff in('L7B', 'L7A', 'L7E', 'L7I', '250', 'L7O') OR 
+		U3.dre_ispettorati = u4.DRE_ISPETTORATI 
+		AND ( u4.sigla in('3') or u4.cod_uff in('T4A') OR u4.sigla = '7' AND u4.sigla_prov IN('BZ', 'TN')) 
+		and u3.cod_uff NOT in('L7B', 'L7A', 'L7E', 'L7I', '250', 'L7O') )
+	) AS COD_UFF_COMP,
+	(select  U3.desc_UFF from
+	 ufficio u3 
+	,ufficio u4 
+	where
+		(U3.COD_UFF = C.struttura_competente OR C.struttura_competente IS NULL) 
+		AND (u4.cod_uff = u3.cod_uff and u3.cod_uff in('L7B', 'L7A', 'L7E', 'L7I', '250', 'L7O') OR 
+		U3.dre_ispettorati = u4.DRE_ISPETTORATI 
+		AND ( u4.sigla in('3') or u4.cod_uff in('T4A') OR u4.sigla = '7' AND u4.sigla_prov IN('BZ', 'TN')) 
+		and u3.cod_uff NOT in('L7B', 'L7A', 'L7E', 'L7I', '250', 'L7O') )
+	) AS UFF_COMP,
+	  
+	(select  U4.COD_UFF from
+	 ufficio u3 
+	,ufficio u4 
+	where
+		(U3.COD_UFF = C.struttura_competente OR C.struttura_competente IS NULL) 
+		AND (u4.cod_uff = u3.cod_uff and u3.cod_uff in('L7B', 'L7A', 'L7E', 'L7I', '250', 'L7O') OR 
+		U3.dre_ispettorati = u4.DRE_ISPETTORATI 
+		AND ( u4.sigla in('3') or u4.cod_uff in('T4A') OR u4.sigla = '7' AND u4.sigla_prov IN('BZ', 'TN')) 
+		and u3.cod_uff NOT in('L7B', 'L7A', 'L7E', 'L7I', '250', 'L7O') )
+	) AS COD_DIR_REG_COMP,
+	(select  U4.desc_UFF from
+	 ufficio u3 
+	,ufficio u4 
+	where
+		(U3.COD_UFF = C.struttura_competente OR C.struttura_competente IS NULL) 
+		AND (u4.cod_uff = u3.cod_uff and u3.cod_uff in('L7B', 'L7A', 'L7E', 'L7I', '250') OR 
+		U3.dre_ispettorati = u4.DRE_ISPETTORATI 
+		AND ( u4.sigla in('3') or u4.cod_uff in('T4A') OR u4.sigla = '7' AND u4.sigla_prov IN('BZ', 'TN')) 
+		and u3.cod_uff NOT in('L7B', 'L7A', 'L7E', 'L7I', '250', 'L7O') )
+	) AS DIR_REG_COMP,
+			   
+		  c.ID_CAUSA, c.NUMEROFASCICOLO, c.ID_FASCICOLO, c.PROG_CAUSA, c.DATA_UDIENZA, c.ATTORE, c.CONVENUTO,
+	      c.TERZO, c.CF, c.COGNOME, c.NOME, c.DENOMINAZIONE, c.ORGANO_GIUDICANTE,c.COD_ORGANO_GIUDICANTE, c.STRUTTURAINTERNA, c.PROTOCOLLO,
+	      c.DATAPROTOCOLLO, c.GRADOGIUDIZIO, c.TIPO_ATTO, c.ATTO_INTR, c.EV_PROVV_IMP, c.OGGDOMANDA, c.STATO_CAUSA, c.STATO_CAUSA_REALE,
+	      c.UFFICIO_ACQUISIZIONE, c.UTENTE_ACQUISIZIONE, c.PE_ESITO,c.REFERENTE_STRUTTURA_COMPETENTE,
+	      c.CK_VISI_STRUTTURA_COMPETENTE,c.STRUTTURA_COMPETENTE, nvl(d.new_codice, ' ') AS NEW_CODICE, 
+	      b.ALTRO_ATTO_INTR, b.ALTRO_EV_PROVV_IMP,
+	      replace(to_char(c.progr_ufficio, 99999), ' ', '0') AS PROGR_UFFICIO,
+	 	  case when d.new_codice is null then ' '
+	      	   else 'L'||d.new_codice||replace(to_char(c.progr_ufficio, 99999), ' ', '0') end AS IDENTIFICATIVO
+	      , (select count(*) from nt_soggetti where id_causa = c.id_causa and tipo = 'A') COUNT_ATTORI
+	  	  , (select count(*) from nt_soggetti where id_causa = c.id_causa and tipo = 'C') COUNT_CONVENUTI
+	 	  , (select count(*) from nt_soggetti where id_causa = c.id_causa and tipo = 'T') COUNT_TERZI
+	 	  , (select DESCRIZIONE from NT_DETTAGLIOCODICI where CODICE = c.GRADOGIUDIZIO) as DESC_GRADOGIUDIZIO
+	 	  , (select DESCRIZIONE from NT_DETTAGLIOCODICI where CODICE = b.ATTO_INTR) as DESC_ATTO
+	      ,c.DESCR_CATEGORIA_CAUSE DESC_CATEGORIA
+		  ,c.DESCR_DETTAGLIO_CATEGORIA DESC_DETTAGLIO_CATE
+		  ,c.PATR_AVVOCATURA
+	   		,s1.id_soggetto, s1.tipo as TIPO_SOGG, s1.cf as CF_SOGG, s1.cognome as COGNOME_SOGG, s1.nome as NOME_SOGG, 
+	  		s1.denominazione as DENOMINAZIONE_SOGG, pv1.esito_provv as ESITO_PROVV, nvl(dc1.descrizione, 'Esito assente') as DESCR_ESITO,
+	  		pct.RIFERIMENTO, pct.TIMESTAMP_ACQUISIZIONE, pct.TIMESTAMP_INVIO, ESITO_FINALE, DATA_ESITO_FINALE, pct.id_pct, pct.CF_FIRMATARIO
+	    from 
+	    UFFICIO U1,
+		UFFICIO U2,
+	    NT_SOGGETTI S 
+	    INNER JOIN  NT_VIEW_CAUSE c ON S.ID_CAUSA = C.ID_CAUSA
+		JOIN NT_PCT pct on c.ID_CAUSA = pct.id_causa
+		<!-- JOIN CONT_NSD_STATO_RICHIESTE r on to_char(c.id_causa) = r.key_contenzioso    -->
+		<!-- JOIN CONT_NSD_STATO_RICHIESTE r on pct.id_pct = r.progressivo-->
+		JOIN CONT_NSD_LINK_PROTOCOLLI linkProt on '9_PCT_'||pct.id_causa||'_'||pct.id_pct = linkProt.key_contenzioso and linkProt.tipo_protocollo = '00'
+		JOIN CONT_NSD_STATO_RICHIESTE r on linkProt.id_protocollo = r.id_protocollo 
+	    left join NT_dettagliocodici d on c.gradogiudizio = d.codice 
+	    join NT_ATTI b on b.id_causa = c.id_causa
+	    LEFT JOIN NT_PROVV_FINALE PV ON c.ID_CAUSA = PV.ID_CAUSA and pv.ID_SOGG = s.ID_SOGGETTO and s.ID_CAUSA = PV.ID_CAUSA  
+		INNER JOIN NT_SOGGETTI s1 ON c.ID_CAUSA = s1.ID_CAUSA
+		LEFT JOIN NT_PROVV_FINALE PV1 ON c.ID_CAUSA  = PV1.ID_CAUSA
+			AND pv1.ID_SOGG = s1.ID_SOGGETTO AND s1.ID_CAUSA = PV1.ID_CAUSA 
+		left join NT_dettagliocodici dc1 on pv1.esito_provv = dc1.codice
+    </select>
+    
+</mapper>

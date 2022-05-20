@@ -1,0 +1,6 @@
+package mybatis;
+
+public interface CausaMapper {
+
+	public Causa getCausa();
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.jboss.resteasy.plugins.providers.jaxb.i18n.LogMessages_.logger"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.resteasy_jaxrs.i18n.LogMessages_.logger"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="mybatis.AgsErroreMapper"/>
+<fullyQualifiedTypeName name="mybatis.AgsErrore"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="mybatis.CausaMapper"/>
+<fullyQualifiedTypeName name="mybatis.Causa"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+</qualifiedTypeNameHistroy>

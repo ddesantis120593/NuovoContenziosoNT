@@ -1,0 +1,18 @@
+package it.chopper.rest;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+public class AgsErroreService {
+
+	public List getAgsErrori() {
+        try (SqlSession sqlSession = MyBatisUtils.getSqlSessionFactory().openSession()) {
+        	AgsErroreMapper agsErroreMapper = sqlSession.getMapper(AgsErroreMapper.class);
+            return agsErroreMapper.getAgsErrori();
+        }catch(Exception e) {
+        	System.out.println("errore...");
+        }
+		return null;
+	}
+}

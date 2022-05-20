@@ -1,0 +1,7 @@
+package it.chopper.rest;
+
+
+public interface AgsErroreMapper {
+
+	public AgsErrore getAgsErrori();
+}

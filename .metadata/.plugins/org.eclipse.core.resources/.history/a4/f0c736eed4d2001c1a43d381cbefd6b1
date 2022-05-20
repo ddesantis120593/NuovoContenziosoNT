@@ -1,0 +1,8 @@
+package it.chopper.rest;
+
+import java.util.List;
+
+public interface AgsErroreMapper {
+
+	public AgsErrore getAgsErrori();
+}

@@ -1,0 +1,86 @@
+package mybatis;
+
+public class Causa {
+
+	private int id;
+    private String identificativoCausa;
+    private String fascicolo;
+    private String chiaveMeccanografica;
+    private String attore;
+    private String convenuto;
+    private String terzo;
+    private String protocollo;
+    private String dataProtocollo;
+    private String referenteLegale;
+    
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getIdentificativoCausa() {
+		return identificativoCausa;
+	}
+	public void setIdentificativoCausa(String identificativoCausa) {
+		this.identificativoCausa = identificativoCausa;
+	}
+	public String getFascicolo() {
+		return fascicolo;
+	}
+	public void setFascicolo(String fascicolo) {
+		this.fascicolo = fascicolo;
+	}
+	public String getChiaveMeccanografica() {
+		return chiaveMeccanografica;
+	}
+	public void setChiaveMeccanografica(String chiaveMeccanografica) {
+		this.chiaveMeccanografica = chiaveMeccanografica;
+	}
+	public String getAttore() {
+		return attore;
+	}
+	public void setAttore(String attore) {
+		this.attore = attore;
+	}
+	public String getConvenuto() {
+		return convenuto;
+	}
+	public void setConvenuto(String convenuto) {
+		this.convenuto = convenuto;
+	}
+	public String getTerzo() {
+		return terzo;
+	}
+	public void setTerzo(String terzo) {
+		this.terzo = terzo;
+	}
+	public String getProtocollo() {
+		return protocollo;
+	}
+	public void setProtocollo(String protocollo) {
+		this.protocollo = protocollo;
+	}
+	public String getDataProtocollo() {
+		return dataProtocollo;
+	}
+	public void setDataProtocollo(String dataProtocollo) {
+		this.dataProtocollo = dataProtocollo;
+	}
+	public String getReferenteLegale() {
+		return referenteLegale;
+	}
+	public void setReferenteLegale(String referenteLegale) {
+		this.referenteLegale = referenteLegale;
+	}
+	
+	@Override
+	public String toString() {
+		return "Causa [id=" + id + ", identificativoCausa=" + identificativoCausa + ", fascicolo=" + fascicolo
+				+ ", chiaveMeccanografica=" + chiaveMeccanografica + ", attore=" + attore + ", convenuto=" + convenuto
+				+ ", terzo=" + terzo + ", protocollo=" + protocollo + ", dataProtocollo=" + dataProtocollo
+				+ ", referenteLegale=" + referenteLegale + "]";
+	}
+    
+    
+}

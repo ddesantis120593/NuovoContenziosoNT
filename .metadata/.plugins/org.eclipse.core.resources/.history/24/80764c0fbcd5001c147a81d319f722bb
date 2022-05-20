@@ -1,0 +1,5 @@
+package it.chopper.rest;
+
+public class CausaService {
+
+}

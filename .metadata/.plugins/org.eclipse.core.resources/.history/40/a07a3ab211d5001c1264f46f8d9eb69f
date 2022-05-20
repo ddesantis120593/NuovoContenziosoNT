@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mp.mappers.AgsErroreMapper">
+
+    <resultMap type="it.chopper.rest.AgsErrore" id="AgsErroreResult">
+        <id property="id" column="id" />
+        <result property="fase" column="fase" />
+        <result property="codice" column="codice" />
+        <result property="descrizione" column="descrizione" />   
+        <result property="tipo" column="tipo" />   
+    </resultMap>
+
+    <select id="getAgsErrori" resultMap="AgsErroreResult">
+        SELECT * FROM AGS_ERRORI 
+    </select>
+    
+</mapper>
