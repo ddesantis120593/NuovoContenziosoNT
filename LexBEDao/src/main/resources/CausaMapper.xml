@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.CausaMapper">
+
+    <resultMap type="mybatis.Causa" id="CausaResult">
+        <id property="id" column="id" />
+        <result property="id_causa" column="id_causa" />
+        <result property="id_fascicolo" column="id_fascicolo" />
+        <result property="prog_causa" column="prog_causa" />   
+        <result property="categoria_cause" column="categoria_cause" />   
+        <result property="dettaglio_categoria" column="dettaglio_categoria" />
+        <result property="progr_ufficio" column="progr_ufficio" />
+        <result property="data_udienza" column="data_udienza" />   
+        <result property="attore" column="attore" /> 
+        <result property="convenuto" column="convenuto" />  
+        <result property="terzo" column="terzo" /> 
+        <result property="cf" column="cf" />
+        <result property="cognome" column="cognome" />
+        <result property="nome" column="nome" />   
+        <result property="denominazione" column="denominazione" />   
+        <result property="organo_giudicante" column="organo_giudicante" />
+        <result property="cod_organo_giudicante" column="cod_organo_giudicante" />
+        <result property="strutturaInterna" column="strutturaInterna" />   
+        <result property="protocollo" column="protocollo" /> 
+        <result property="dataProtocollo" column="dataProtocollo" />  
+        <result property="gradoGiudizziario" column="gradoGiudizziario" /> 
+        <result property="tipo_atto" column="tipo_atto" />
+        <result property="atto_intr" column="atto_intr" />
+        <result property="ev_provv_imp" column="ev_provv_imp" />   
+        <result property="oggDomanda" column="oggDomanda" />   
+        <result property="stato_causa" column="stato_causa" />
+        <result property="stato_causa_reale" column="stato_causa_reale" />  
+        <result property="ufficio_acquisizione" column="ufficio_acquisizione" /> 
+        <result property="utente_acquisizione" column="utente_acquisizione" />  
+        <result property="pe_esito" column="pe_esito" /> 
+        <result property="referente_struttura_competente" column="referente_struttura_competente" />
+        <result property="struttura_competente" column="struttura_competente" />
+        <result property="ck_visi_struttura_competente" column="ck_visi_struttura_competente" />   
+        <result property="patr_avvocatura" column="patr_avvocatura" />   
+        <result property="descr_categoria_cause" column="descr_categoria_cause" />
+        <result property="descr_detteglio_categoria" column="descr_detteglio_categoria" />       
+    </resultMap>
+
+    <select id="getCausa" resultMap="CausaResult">
+		select * from nt_view_cause
+    </select>
+    
+</mapper>

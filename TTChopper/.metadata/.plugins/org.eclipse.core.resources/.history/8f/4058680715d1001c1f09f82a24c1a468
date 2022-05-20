@@ -1,0 +1,26 @@
+<server description="new server">
+
+
+    <!-- Enable features -->
+    <featureManager>
+    <feature>webProfile-8.0</feature>
+        <!-- <feature></feature> -->
+        <feature>localConnector-1.0</feature>
+    </featureManager>
+
+<library id="OracleLib">
+		<fileset dir="${shared.resource.dir}/oracle" includes="*.jar"/>
+	</library>
+
+	<dataSource id="DefaultDataSource" jndiName="jdbc/oracle"> 
+ 		<jdbcDriver libraryRef="OracleLib"/> 
+		<properties.oracle URL="jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP) (HOST = 10.50.5.48) (PORT = 1630)) (ADDRESS = (PROTOCOL = TCP) (HOST = 26.2.63.54) (PORT = 1630) ) (ADDRESS = (PROTOCOL = TCP) (HOST = 26.2.63.73)(PORT = 1521)))(SOURCE_ROUTE = yes)(CONNECT_DATA =(SERVICE_NAME = SVW1)(SERVER = DEDICATED))) " password="ACCERTAMENTOCALC" user="ACCERTAMENTOCALC"/>
+ 	</dataSource> 
+
+
+
+
+    <applicationMonitor updateTrigger="mbean"/>
+
+    <webApplication id="TTChopper" location="TTChopper-0.0.1-SNAPSHOT.war" name="TTChopper"/>
+</server>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+	<persistence-unit name="LexBEDao" transaction-type="JTA">
+	<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+		<jta-data-source>jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP) (HOST = 10.50.5.48) (PORT = 1630)) (ADDRESS = (PROTOCOL = TCP) (HOST = 26.2.63.54) (PORT = 1630) ) (ADDRESS = (PROTOCOL = TCP) (HOST = 26.2.63.73)(PORT = 1521)))(SOURCE_ROUTE = yes)(CONNECT_DATA =(SERVICE_NAME = SVW1)(SERVER = DEDICATED)))</jta-data-source>
+		<properties>
+			<property name="openjpa.Log" value="DefaultLevel=DEBUG" />
+<!-- 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" /> -->
+<!-- 			<property name="openjpa.ConnectionFactoryProperties" value="autocommit=false"/>  -->
+		</properties>
+	
+	</persistence-unit>
+</persistence>
