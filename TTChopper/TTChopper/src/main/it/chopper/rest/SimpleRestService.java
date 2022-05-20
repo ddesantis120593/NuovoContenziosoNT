@@ -81,6 +81,7 @@ public class SimpleRestService {
             logger.debug("result: '"+response+"'");
             logger.debug("End getSomething");
         }
+        
         return causaQuery;	
 	}
 
