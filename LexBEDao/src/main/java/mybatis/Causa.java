@@ -1,44 +1,126 @@
 package mybatis;
 
+import java.io.Serializable;
 
-public class Causa {
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlRootElement(name = "causa")
+public class Causa implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
+	
+	@XmlAttribute(name = "id_causa")
     private String id_causa;
+	
+	@XmlAttribute(name = "numeroFascicolo")
     private String numeroFascicolo;
+	
+	@XmlAttribute(name = "id_fascicolo")
     private String id_fascicolo;
+	
+	@XmlAttribute(name = "prog_causa")
     private String prog_causa;
+	
+	@XmlAttribute(name = "categoria_cause")
     private String categoria_cause;
+    
+	@XmlAttribute(name = "dettaglio_categoria")
     private String dettaglio_categoria;
+    
+	@XmlAttribute(name = "progr_ufficio")
     private String progr_ufficio;
+    
+	@XmlAttribute(name = "data_udienza")
     private String data_udienza;
+    
+	@XmlAttribute(name = "attore")
     private String attore;
+    
+	@XmlAttribute(name = "convenuto")
     private String convenuto;
+    
+	@XmlAttribute(name = "terzo")
     private String terzo;
+    
+	@XmlAttribute(name = "cf")
     private String cf;
+    
+	@XmlAttribute(name = "cognome")
     private String cognome;
+    
+	@XmlAttribute(name = "nome")
     private String nome;
+    
+	@XmlAttribute(name = "denominazione")
     private String denominazione;
+    
+	@XmlAttribute(name = "organo_giudicante")
     private String organo_giudicante;
+    
+	@XmlAttribute(name = "cod_organo_giudicante")
     private String cod_organo_giudicante;
+    
+	@XmlAttribute(name = "strutturaInterna")
     private String strutturaInterna;
+    
+	@XmlAttribute(name = "protocollo")
     private String protocollo;
+    
+	@XmlAttribute(name = "dataProtocollo")
     private String dataProtocollo;
+    
+	@XmlAttribute(name = "gradoGiudizziario")
     private String gradoGiudizziario;
+    
+	@XmlAttribute(name = "tipo_atto")
     private String tipo_atto;
+    
+	@XmlAttribute(name = "atto_intr")
     private String atto_intr;
+    
+	@XmlAttribute(name = "ev_provv_imp")
     private String ev_provv_imp;
+    
+	@XmlAttribute(name = "oggDomanda")
     private String oggDomanda;
+    
+	@XmlAttribute(name = "stato_causa")
     private String stato_causa;
+    
+	@XmlAttribute(name = "stato_causa_reale")
     private String stato_causa_reale;
+    
+	@XmlAttribute(name = "ufficio_acquisizione")
     private String ufficio_acquisizione;
+    
+	@XmlAttribute(name = "utente_acquisizione")
     private String utente_acquisizione;
+    
+	@XmlAttribute(name = "pe_esito")
     private String pe_esito;
+    
+	@XmlAttribute(name = "referente_struttura_competente")
     private String referente_struttura_competente;
+    
+	@XmlAttribute(name = "struttura_competente")
     private String struttura_competente;
+    
+	@XmlAttribute(name = "ck_visi_struttura_competente")
     private String ck_visi_struttura_competente;
+    
+	@XmlAttribute(name = "patr_avvocatura")
     private String patr_avvocatura;
+    
+	@XmlAttribute(name = "descr_categoria_cause")
     private String descr_categoria_cause;
+    
+	@XmlAttribute(name = "descr_detteglio_categoria")
     private String descr_detteglio_categoria;
     
 	public int getId() {
