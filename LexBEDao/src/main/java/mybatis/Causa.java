@@ -1,5 +1,6 @@
 package mybatis;
 
+
 public class Causa {
 
 	private int id;

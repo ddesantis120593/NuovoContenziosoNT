@@ -9,15 +9,22 @@ import javax.ws.rs.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.core.MediaType;
+import javax.xml.ws.Response;
 
+import org.apache.http.HttpResponse;
 import org.apache.log4j.Logger;
+import org.jboss.logging.Cause;
 
+import com.google.gson.Gson;
+
+import it.chopper.response.ChoppaResponse;
 import mybatis.AgsErrore;
 import mybatis.Causa;
 import mybatis.MyBatisConnectionFactory;
@@ -30,19 +37,23 @@ public class SimpleRestService {
 
 	@GET
 	@Path("/choppa")
-    @Produces(MediaType.APPLICATION_JSON)
-	public StringBuilder getSomething(@QueryParam("request") String request ,
+	@Produces(MediaType.TEXT_PLAIN)
+	//@Consumes(MediaType.APPLICATION_JSON)
+	public List<Causa> getSomething(@QueryParam("request") String request ,
 			 @DefaultValue("1") @QueryParam("version") int version) {
-
+		//ChoppaResponse resp = new  ChoppaResponse();
 		if (logger.isDebugEnabled()) {
 			logger.debug("Start getSomething");
 			logger.debug("data: '" + request + "'");
 			logger.debug("version: '" + version + "'");
 		}
 
-		String response = null;
+		//String response = null;
 		List<Causa> causaQuery = new ArrayList<Causa>();
-		StringBuilder sr = new StringBuilder();
+		//Gson gson = new Gson();
+		//ObjectMapper mapper = new ObjectMapper();
+		//String jsonString = null;
+
         try{		
 			MyBatisConnectionFactory connection = MyBatisConnectionFactory.getInstance();
 			/*AgsErroreService ags = new AgsErroreService();
@@ -50,12 +61,15 @@ public class SimpleRestService {
 			
 			CausaService causaService = new CausaService();
 			causaQuery = causaService.getCause(connection.getSqlSessionFactory().openSession());
-			
+			//jsonString = mapper.writeValueAsString(causaQuery);
+			//StringBuilder sr = new StringBuilder();
 			
 			for(int i=0; i<causaQuery.size(); i++) {
-				sr.append(causaQuery.get(i)).append("\n");
+				causaQuery.get(i).toString();
 			}
-			
+		
+			//gson.toJson(causaQuery);
+			//resp.setBody(causaQuery);
 //			SqlSession session = connection.getSqlSessionFactory().openSession();
 //			logger.info("session open");
 //			Connection conn = session.getConnection();
@@ -70,18 +84,19 @@ public class SimpleRestService {
 //                    break;
 //                default: throw new Exception("Unsupported version: " + version);
 //            }
-            response = "Response: " + sr.toString();	
+            //response = "Response: " + sr.toString();	
         }
-        catch(Exception e){
+        catch(Exception e){/*
         	response = e.getMessage().toString();
-        	logger.error(response);
+        	logger.error(response);*/
         }
-        
+        /*
         if(logger.isDebugEnabled()){
             logger.debug("result: '"+response+"'");
             logger.debug("End getSomething");
-        }
-        return sr;	
+        }*/
+       
+        return  causaQuery;	
 	}
 
 	@POST
