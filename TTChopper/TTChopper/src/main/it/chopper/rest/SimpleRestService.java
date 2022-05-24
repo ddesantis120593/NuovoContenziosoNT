@@ -31,7 +31,6 @@ public class SimpleRestService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Causa> getSomething(@QueryParam("request") String request ,
 			 @DefaultValue("1") @QueryParam("version") int version) {
-		//ChoppaResponse resp = new  ChoppaResponse();
 		if (logger.isDebugEnabled()) {
 			logger.debug("Start getSomething");
 			logger.debug("data: '" + request + "'");
@@ -40,44 +39,21 @@ public class SimpleRestService {
 
 		String response = null;
 		List<Causa> causaQuery = new ArrayList<Causa>();
-		//Gson gson = new Gson();
-		//ObjectMapper mapper = new ObjectMapper();
-		//String jsonString = null;
 
         try{		
 			MyBatisConnectionFactory connection = MyBatisConnectionFactory.getInstance();
-			/*AgsErroreService ags = new AgsErroreService();
-			AgsErrore query = ags.getAgsErrori(connection.getSqlSessionFactory().openSession());*/
 			
 			CausaService causaService = new CausaService();
 			causaQuery = causaService.getCause(connection.getSqlSessionFactory().openSession());
-			//jsonString = mapper.writeValueAsString(causaQuery);
-			//StringBuilder sr = new StringBuilder();
 			
 			for(int i=0; i<causaQuery.size(); i++) {
 				causaQuery.get(i).toString();
 			}
 		
-			//gson.toJson(causaQuery);
-			//resp.setBody(causaQuery);
-//			SqlSession session = connection.getSqlSessionFactory().openSession();
-//			logger.info("session open");
-//			Connection conn = session.getConnection();
-//			logger.info("Connessione MyBatis2Oracle " + conn);
-//			session.close();
 			logger.info("session close");
-//            switch(version){
-//	            case 1:
-//	                if(logger.isDebugEnabled()) logger.debug("in version 1");
-//
-//	                
-//                    break;
-//                default: throw new Exception("Unsupported version: " + version);
-//            }
             response = "Response: " + causaQuery.toString();	
         }
         catch(Exception e){
-        	//response = e.getMessage().toString();
         	logger.error(response);
         }
         
